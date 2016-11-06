@@ -3,9 +3,19 @@ import sys
 from urllib.request import urlopen
 
 def help():
+    """
+    Inform user of parameters of program
+    """
     print("Usage is: python3 raymond_anderson_hw6.py <file Input>")
+    return
 
 def main(link):
+    """
+    Returns top 25 errors from an error log 
+    Args:
+        link:
+            The link to the error log
+    """
     with urlopen(link) as data:
         errors = []
         for line in data:
