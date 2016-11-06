@@ -2,8 +2,10 @@
 import sys
 from urllib.request import urlopen
 
-def main():
-    link="http://icarus.cs.weber.edu/~hvalle/cs3030/data/error.log.test"
+def help():
+    print("Usage is: python3 raymond_anderson_hw6.py <file Input>")
+
+def main(link):
     with urlopen(link) as data:
         errors = []
         for line in data:
@@ -25,29 +27,27 @@ def main():
             i += errors.count(errors[i])
         
         numErrors.sort(reverse=True)
+        errors=[]
+        for i in range(25):
+            errors.append(numErrors[i])
 
-        for error in numErrors:
-            print("Count: " + str(error[0]) + " Page: " + error[-1])
-                
-                
+        print("*** Top 25 page errors ***")
+
+        for error in errors:
+            print("Count: " + str(error[0]) + " Error: " + error[-1])
 
         
-
-            
-            
-            
-            
-            
-            
-            
-        
-                        
-
+                
     return
 
 
 if __name__ == '__main__':
-    main()
-    exit(0)
+    if len(sys.argv) == 2:
+        main(sys.argv[1])
+        exit(0)
+    else:
+        help()
+        exit(1)
+    
 
 
